@@ -1,5 +1,5 @@
 {
-    "name": "launchpad/framework",
+    "name": "gocodebox/launchpad-framework",
     "version": "0.0.1",
     "description": "The LaunchPad Framework.",
     "keywords": ["framework", "launchpad"],
