@@ -72,24 +72,8 @@ class Application
     {
         self::$config = $config;
 
-        $this->include_helpers();
 
         $this->add_actions();
-    }
-
-    /**
-     * Include Helpers
-     * Includes helper functions
-     *
-     * @since 0.0.1
-     * @version 0.0.1
-     *
-     * @return void
-     */
-    private function include_helpers()
-    {
-        $helpers_url = self::$config->get_template_directory() . 'framework/src/SkyLab/Foundation/helpers.php';
-        include $helpers_url;
     }
 
     /**
