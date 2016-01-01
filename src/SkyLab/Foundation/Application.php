@@ -2,7 +2,6 @@
 
 namespace SkyLab\Foundation;
 
-use SkyLab\ThemeLayout\Layout;
 use SkyLab\Menus\MenuGenerator;
 use SkyLab\Config\Configuration;
 use SkyLab\Settings\SettingsMenu;
@@ -89,8 +88,6 @@ class Application
         $this->initialize_objects();
 
         $this->initialize_admin_only_objects();
-
-        $this->initialize_layout_settings();
     }
 
     /**
@@ -123,19 +120,6 @@ class Application
             new MetaboxLoader(self::$config);
             new CustomizeSectionLoader(self::$config);
         }
-    }
-
-    /**
-     * Initialize layout settings
-     *
-     * @since 0.0.1
-     * @version 0.0.1
-     *
-     * @return void
-     */
-    private function initialize_layout_settings()
-    {
-        new Layout(self::$config);
     }
 
 }
