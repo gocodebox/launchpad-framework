@@ -40,39 +40,10 @@ class FieldGenerator
     {
         foreach ($this->fields as $value) {
 
-            // Switch based on type
-            switch($value['type']) {
+            $type_class = Application::$config->get_fields_namespace() . ucfirst($value['type']);
+            $field = new $type_class($value);
+            echo $field->output();
 
-                case 'sectionstart':
-                case 'sectionend':
-                case 'title':
-                case "desc":
-                case 'text':
-                case 'textarea':
-                case 'image':
-                case 'hidden':
-                case 'email':
-                case 'number':
-                case 'checkbox' :
-                case 'button':
-                case 'radio' :
-                case 'select' :
-                case 'multiselect' :
-                case 'color' :
-
-                    $type_class = Application::$config->get_fields_namespace() . ucfirst($value['type']);
-                    $field = new $type_class($value);
-                    echo $field->output();
-
-                    break;
-
-                // Default: add to this action to create your own fields
-                default:
-
-                    do_action( 'launchpad_admin_field_' . $value['type'], $value );
-
-                    break;
-            }
         }
     }
 
@@ -103,35 +74,13 @@ class FieldGenerator
             // Get the option name
             $option_value = null;
 
-            switch ($type) {
-                case "image" :
-                case "text" :
-                case "textarea" :
-                case 'email':
-                case 'number':
-                case "hidden" :
-                case "checkbox" :
-                case 'radio' :
-                case "select" :
-                case "multiselect" :
-                case 'selectpage' :
-                case 'color' :
+            // we do nothing for button
+            $type_class = Application::$config->get_fields_namespace() . ucfirst($type);
+            $field = new $type_class($value);
+            //$field = new Text($value);
+            $field->save();
 
-                    // we do nothing for button
-                    $type_class = Application::$config->get_fields_namespace() . ucfirst($type);
-                    $field = new $type_class($value);
-                    //$field = new Text($value);
-                    $field->save();
 
-                    break;
-
-                // Custom handling
-                default :
-
-                    do_action('launchpad_update_option_' . $type, $value);
-
-                    break;
-            }
         }
     }
 

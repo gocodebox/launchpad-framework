@@ -6,8 +6,11 @@ use SkyLab\Menus\MenuGenerator;
 use SkyLab\Config\Configuration;
 use SkyLab\Settings\SettingsMenu;
 use SkyLab\Metaboxes\MetaboxLoader;
+use SkyLab\Loaders\ActionClassLoader;
 use SkyLab\Sidebars\SidebarGenerator;
+use SkyLab\Shortcodes\ShortcodeGenerator;
 use SkyLab\Customizer\CustomizeSectionLoader;
+
 
 /**
  * Base Application Class
@@ -71,8 +74,9 @@ class Application
     {
         self::$config = $config;
 
-
         $this->add_actions();
+
+        add_action('after_setup_theme', [$this, 'theme_setup'], 11);
     }
 
     /**
@@ -90,6 +94,18 @@ class Application
         $this->initialize_admin_only_objects();
     }
 
+    public function theme_setup()
+    {
+        // Language loading
+        load_theme_textdomain('launchpad', trailingslashit(get_template_directory()) . 'languages');
+        // HTML5 support
+        add_theme_support( 'html5', array( 'search-form', 'gallery' ) );
+        // Automatic feed links
+        add_theme_support( 'automatic-feed-links' );
+        // Post Thumbnails
+        add_theme_support( 'post-thumbnails' );
+    }
+
     /**
      * Initialize Objects
      *
@@ -102,6 +118,8 @@ class Application
     {
         new SidebarGenerator(self::$config);
         new MenuGenerator(self::$config);
+        new ShortcodeGenerator(self::$config);
+        new ActionClassLoader(self::$config);
     }
 
     /**

@@ -130,6 +130,11 @@ abstract class Field
             $this->value['wrapper_class'] = '';
         }
 
+        if ( ! isset( $this->value['sanitize_field']))
+        {
+            $this->value['sanitize_field'] = true;
+        }
+
     }
 
     /**
@@ -241,7 +246,7 @@ abstract class Field
             $option_value = stripslashes($option_value);
         }
 
-        return $option_value === null ? $default : $option_value;
+        return is_null($option_value) ? $default : $option_value;
     }
 
     /**
@@ -290,11 +295,16 @@ abstract class Field
      */
     protected function set_option_value()
     {
+        $this->set_default_parameters();
+
         if (isset($_POST[$this->value['id']]))
         {
-            $this->option_value = sanitize_text_field(
-                stripslashes($_POST[$this->value['id']])
-            );
+            if ($this->value['sanitize_field'])
+            {
+                $_POST[$this->value['id']] = sanitize_text_field($_POST[$this->value['id']]);
+            }
+
+            $this->option_value = stripslashes($_POST[$this->value['id']]);
         }
         else
         {

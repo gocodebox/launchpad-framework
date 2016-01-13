@@ -34,9 +34,15 @@ class Template
 
         do_action('launchpad_before_template_part', $name, $path, $located, $args);
 
+        ob_start();
+
         include($located);
 
+        $output = ob_get_clean();
+
         do_action('launchpad_after_template_part', $name, $path, $located, $args);
+
+        return do_shortcode($output);
     }
 
     /**

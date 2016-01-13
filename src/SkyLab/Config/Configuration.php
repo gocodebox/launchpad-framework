@@ -132,6 +132,16 @@ abstract class Configuration
     protected $menus_namespace = 'LaunchPad\Menus\\';
 
     /**
+     * Shortcodes Namespace
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @var string
+     */
+    protected $shortcodes_namespace = 'LaunchPad\Shortcodes\\';
+
+    /**
      * Metabox Namespace
      *
      * @since 0.0.1
@@ -140,6 +150,16 @@ abstract class Configuration
      * @var string
      */
     protected $metaboxes_namespace = 'LaunchPad\Metaboxes\\';
+
+    /**
+     * Actions Namespace
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @var string
+     */
+    protected $actions_namespace = 'LaunchPad\ThemeActions\\';
 
     /**
      * Settings Directory
@@ -190,6 +210,26 @@ abstract class Configuration
      * @var string
      */
     protected $menus_directory = '/app/Menus/';
+
+    /**
+     * Shortcodes Directory
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @var string
+     */
+    protected $shortcodes_directory = '/app/Shortcodes/';
+
+    /**
+     * Actions Directory
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @var string
+     */
+    protected $actions_directory = '/app/ThemeActions/';
 
     /**
      * Get Style Sheet Directory
@@ -300,6 +340,26 @@ abstract class Configuration
     }
 
     /**
+     * Get Shortcodes Namespace
+     *
+     * @return string
+     */
+    public function get_shortcodes_namespace()
+    {
+        return $this->shortcodes_namespace;
+    }
+
+    /**
+     * Get Actions Namespace
+     *
+     * @return string
+     */
+    public function get_actions_namespace()
+    {
+        return $this->actions_namespace;
+    }
+
+    /**
      * Get Metaboxes Directory
      *
      * @return string
@@ -350,6 +410,26 @@ abstract class Configuration
     }
 
     /**
+     * Get Shortcodes Directory
+     *
+     * @return string
+     */
+    public function get_shortcodes_directory()
+    {
+        return $this->shortcodes_directory;
+    }
+
+    /**
+     * Get Actions Directory
+     *
+     * @return string
+     */
+    public function get_actions_directory()
+    {
+        return $this->actions_directory;
+    }
+
+    /**
      * Get Primary Sidebar
      *
      * @return string
@@ -368,6 +448,18 @@ abstract class Configuration
     public function get_secondary_sidebar()
     {
         $sidebar = $this->get_sidebars_namespace() . $this->secondary_sidebar;
+        return new $sidebar;
+    }
+
+    /**
+     * Get Footer Sidebar
+     *
+     * @param $sidebar_class
+     * @return mixed
+     */
+    public function get_footer_sidebar($sidebar_class)
+    {
+        $sidebar = $this->get_sidebars_namespace() . $sidebar_class;
         return new $sidebar;
     }
 

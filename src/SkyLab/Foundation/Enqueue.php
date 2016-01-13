@@ -307,6 +307,29 @@ class Enqueue
     }
 
     /**
+     * Enqueue stylesheet dependencies
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @return array
+     */
+    protected function enqueue_stylesheet_dependencies()
+    {
+        foreach ((array)$this->get_stylesheet_dependencies() as $dependency)
+        {
+            if (is_array($dependency))
+            {
+                call_user_func_array('wp_enqueue_style', $dependency);
+            }
+            else
+            {
+                wp_enqueue_style($dependency);
+            }
+        }
+    }
+
+    /**
      * Enqueue Javascript bundle
      *
      * @since 0.0.1

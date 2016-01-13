@@ -89,7 +89,7 @@ class CustomizeSectionLoader
             foreach ($files as $file)
             {
                 $file = $this->config->get_customizer_namespace() . str_replace('.php', '', basename($file));
-                $sections[] = new $file;
+                $sections[] = (new $file)->get_settings();
             }
 
             self::$sections = apply_filters('launchpad_customizer_sections', $sections);

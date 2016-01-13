@@ -63,7 +63,7 @@ class SidebarGenerator
      */
     public function get_sidebar(Sidebar $sidebar, $args=[])
     {
-        return (new Template)->get($sidebar->template, ['id' => $sidebar->id]);
+        echo (new Template)->get($sidebar->template, ['id' => $sidebar->id]);
     }
 
     /**
