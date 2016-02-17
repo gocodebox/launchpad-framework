@@ -55,7 +55,7 @@ class FieldGenerator
      *
      * @return bool
      */
-    public function save()
+    public function save($use_default = false)
     {
         if (empty($_POST))
         {
@@ -78,7 +78,7 @@ class FieldGenerator
             $type_class = Application::$config->get_fields_namespace() . ucfirst($type);
             $field = new $type_class($value);
             //$field = new Text($value);
-            $field->save();
+            $field->save($use_default);
 
 
         }

@@ -161,16 +161,17 @@ abstract class Field
     }
 
     /**
-     * Save Field
+     * * Save Field
      *
      * @since 0.0.1
      * @version 0.0.1
      *
+     * @param bool $restore_to_default
      * @return $this
      */
-    public function save()
+    public function save($use_default = false)
     {
-        return $this->set_option_value()->set_option();
+        return $this->set_option_value($use_default)->set_option();
     }
 
     /**
@@ -293,11 +294,15 @@ abstract class Field
      *
      * @return $this
      */
-    protected function set_option_value()
+    protected function set_option_value($use_default = false)
     {
         $this->set_default_parameters();
 
-        if (isset($_POST[$this->value['id']]))
+        if ($use_default)
+        {
+            $this->option_value = $this->value['default'];
+        }
+        else if (isset($_POST[$this->value['id']]))
         {
             if ($this->value['sanitize_field'])
             {

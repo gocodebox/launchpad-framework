@@ -8,6 +8,7 @@ use SkyLab\Settings\SettingsMenu;
 use SkyLab\Metaboxes\MetaboxLoader;
 use SkyLab\Loaders\ActionClassLoader;
 use SkyLab\Sidebars\SidebarGenerator;
+use SkyLab\Settings\SettingGenerator;
 use SkyLab\Shortcodes\ShortcodeGenerator;
 use SkyLab\Customizer\CustomizeSectionLoader;
 
@@ -80,6 +81,22 @@ class Application
     }
 
     /**
+     * Main Instance of LaunchPad Application
+     *
+     * Ensures only one instance of Application is loaded or can be loaded.
+     *
+     * @static
+     * @see LLMS()
+     * @return LifterLMS - Main instance
+     */
+    public static function instance() {
+        if ( is_null( self::$_instance ) ) {
+            self::$_instance = new self();
+        }
+        return self::$_instance;
+    }
+
+    /**
      * Add Actions
      *
      * @since 0.0.1
@@ -104,6 +121,23 @@ class Application
         add_theme_support( 'automatic-feed-links' );
         // Post Thumbnails
         add_theme_support( 'post-thumbnails' );
+
+        $this->install_default_settings();
+    }
+
+    /**
+     * Install Default Settings
+     * If force_reset is false it will always check if the default
+     * settings have already been installed. set force_reset to true
+     * to reset the default settings if they have already been set.
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     */
+    public function install_default_settings()
+    {
+        $default_settings = (new SettingGenerator(self::$config))->save_default_settings();
     }
 
     /**

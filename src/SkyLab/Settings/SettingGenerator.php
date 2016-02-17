@@ -232,11 +232,69 @@ class SettingGenerator {
 	 * @param array $settings Opens array to output
 	 * @return bool
 	 */
-	public static function save_fields($settings)
+	public static function save_fields($settings, $restore_to_defaults = false)
     {
         $fields = new FieldGenerator($settings);
 
-        $fields->save();
+        $fields->save($restore_to_defaults);
 	}
+
+    /**
+     * Save the default settings
+     * If force_reset is false it will always check if the default
+     * settings have already been installed. set force_reset to true
+     * to reset the default settings if they have already been set.
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @param bool $force_reset
+     */
+    public function save_default_settings($force_reset = false)
+    {
+        if ( ! get_option('launchpad_default_settings_saved', false) || $force_reset)
+        {
+            $settings = self::get_default_settings();
+
+            // save fields and restore to defaults
+            self::save_fields($settings, true);
+
+            update_option('launchpad_default_settings_saved', true);
+
+        }
+
+    }
+
+    /**
+     * Get Sidebars
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @return array
+     */
+    public function get_default_settings()
+    {
+        if (empty(self::$settings))
+        {
+            $settings = [];
+
+            $files = glob(trailingslashit(get_template_directory())
+                . $this->config->get_settings_directory() . '*.php');
+
+            foreach ($files as $file)
+            {
+                $file = $this->config->get_settings_namespace() . str_replace('.php', '', basename($file));
+                $settings = array_merge($settings, (new $file)->get_settings());
+            }
+
+            self::$settings = apply_filters('launchpad_save_default_settings', $settings);
+
+        }
+
+        $settings = apply_filters('launchpad_default_settings', self::$settings);
+
+        return $settings;
+    }
 
 }
