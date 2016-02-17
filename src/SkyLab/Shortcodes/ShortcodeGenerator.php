@@ -49,6 +49,13 @@ class ShortcodeGenerator
         $this->add_shortcodes();
     }
 
+    /**
+     * Add Shortcode
+     * applies add_shortcode method to shortcode
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     */
     private function add_shortcodes()
     {
         $shortcodes = $this->get_shortcodes();

@@ -1,16 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marknelson
- * Date: 1/22/16
- * Time: 8:27 PM
- */
 
 namespace SkyLab\Fonts;
 
-
+/**
+ * Font Options
+ *
+ * @package SkyLab
+ * @author codeBOX
+ * @since 0.0.1
+ */
 class FontOptions
 {
+    /**
+     * Get font options
+     * Combines the OS fonts with the google fonts from the the webfonts.json file
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @return array
+     */
     public function get_font_options()
     {
         $typography_mixed_fonts = array_merge(
@@ -21,6 +30,16 @@ class FontOptions
 
         return $typography_mixed_fonts;
     }
+
+    /**
+     * Get OS Fonts
+     * Returns an array of operating system fonts accessible to all major browsers
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @return array
+     */
     private function get_os_fonts() {
 
         $os_faces = apply_filters(
@@ -39,6 +58,15 @@ class FontOptions
         return $os_faces;
     }
 
+    /**
+     * Get Google Fonts
+     * Returns an array of Google Fonts
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @return array
+     */
     private function get_google_fonts()
     {
         $google_faces = [];

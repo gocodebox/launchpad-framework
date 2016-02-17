@@ -68,6 +68,12 @@ class SettingsMenu
         $this->settings = new SettingGenerator($this->config);
     }
 
+    /**
+     * Display the settings menu
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     */
     public function display_settings_menu()
     {
         add_menu_page(

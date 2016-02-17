@@ -15,6 +15,7 @@ if ( ! function_exists('is_lifterlms_enabled')) {
 }
 
 if ( ! function_exists( 'launchpad_post_thumbnail' ) ) {
+
     /**
      * Display an optional post thumbnail.
      *
@@ -49,6 +50,7 @@ if ( ! function_exists( 'launchpad_post_thumbnail' ) ) {
 }
 
 if ( ! function_exists( 'launchpad_entry_meta' ) ) {
+
     /**
      * Prints HTML with meta information for the categories, tags.
      *
@@ -136,59 +138,65 @@ if ( ! function_exists( 'launchpad_entry_meta' ) ) {
     }
 }
 
-/**
- * Determine whether blog/site has more than one category.
- *
- * @since Twenty Fifteen 1.0
- *
- * @return bool True of there is more than one category, false otherwise.
- */
-function launchpad_categorized_blog() {
-    if ( false === ( $all_the_cool_cats = get_transient( 'launchpad_categories' ) ) ) {
-        // Create an array of all the categories that are attached to posts.
-        $all_the_cool_cats = get_categories( array(
-            'fields'     => 'ids',
-            'hide_empty' => 1,
+if ( ! function_exists( 'launchpad_categorized_blog' ) ) {
 
-            // We only need to know if there is more than one category.
-            'number'     => 2,
-        ) );
+    /**
+     * Determine whether blog/site has more than one category.
+     *
+     * @since Twenty Fifteen 1.0
+     *
+     * @return bool True of there is more than one category, false otherwise.
+     */
+    function launchpad_categorized_blog()
+    {
+        if (false === ($all_the_cool_cats = get_transient('launchpad_categories'))) {
+            // Create an array of all the categories that are attached to posts.
+            $all_the_cool_cats = get_categories(array(
+                'fields' => 'ids',
+                'hide_empty' => 1,
 
-        // Count the number of categories that are attached to the posts.
-        $all_the_cool_cats = count( $all_the_cool_cats );
+                // We only need to know if there is more than one category.
+                'number' => 2,
+            ));
 
-        set_transient( 'launchpad_categories', $all_the_cool_cats );
-    }
+            // Count the number of categories that are attached to the posts.
+            $all_the_cool_cats = count($all_the_cool_cats);
 
-    if ( $all_the_cool_cats > 1 ) {
-        // This blog has more than 1 category so launchpad_categorized_blog should return true.
-        return true;
-    } else {
-        // This blog has only 1 category so launchpad_categorized_blog should return false.
-        return false;
+            set_transient('launchpad_categories', $all_the_cool_cats);
+        }
+
+        if ($all_the_cool_cats > 1) {
+            // This blog has more than 1 category so launchpad_categorized_blog should return true.
+            return true;
+        } else {
+            // This blog has only 1 category so launchpad_categorized_blog should return false.
+            return false;
+        }
     }
 }
 
-if ( ! function_exists( 'launchpad_comment_nav' ) ) :
+if ( ! function_exists( 'launchpad_comment_nav' ) ) {
+
     /**
      * Display navigation to next/previous comments when applicable.
      *
      * @since Twenty Fifteen 1.0
      */
-    function launchpad_comment_nav() {
+    function launchpad_comment_nav()
+    {
         // Are there comments to navigate through?
-        if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+        if (get_comment_pages_count() > 1 && get_option('page_comments')) :
             ?>
             <nav class="navigation comment-navigation" role="navigation">
-                <h2 class="screen-reader-text"><?php _e( 'Comment navigation', 'launchpad' ); ?></h2>
+                <h2 class="screen-reader-text"><?php _e('Comment navigation', 'launchpad'); ?></h2>
                 <div class="nav-links">
                     <?php
-                    if ( $prev_link = get_previous_comments_link( __( 'Older Comments', 'launchpad' ) ) ) :
-                        printf( '<div class="nav-previous">%s</div>', $prev_link );
+                    if ($prev_link = get_previous_comments_link(__('Older Comments', 'launchpad'))) :
+                        printf('<div class="nav-previous">%s</div>', $prev_link);
                     endif;
 
-                    if ( $next_link = get_next_comments_link( __( 'Newer Comments', 'launchpad' ) ) ) :
-                        printf( '<div class="nav-next">%s</div>', $next_link );
+                    if ($next_link = get_next_comments_link(__('Newer Comments', 'launchpad'))) :
+                        printf('<div class="nav-next">%s</div>', $next_link);
                     endif;
                     ?>
                 </div><!-- .nav-links -->
@@ -196,4 +204,5 @@ if ( ! function_exists( 'launchpad_comment_nav' ) ) :
             <?php
         endif;
     }
-endif;
+
+}

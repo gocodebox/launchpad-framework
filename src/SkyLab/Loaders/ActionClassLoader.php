@@ -42,6 +42,13 @@ class ActionClassLoader
         $this->config = $config;
     }
 
+    /**
+     * Load class actions
+     * Instantiates an instance of each action class
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     */
     public function load_action_classes()
     {
         $actions = $this->get_actions();
@@ -52,6 +59,15 @@ class ActionClassLoader
         }
     }
 
+    /**
+     * Get Actions
+     * Returns all files in the ThemeActions folder
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @return array
+     */
     private function get_actions()
     {
         if (empty(self::$actions))

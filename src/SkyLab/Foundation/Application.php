@@ -81,22 +81,6 @@ class Application
     }
 
     /**
-     * Main Instance of LaunchPad Application
-     *
-     * Ensures only one instance of Application is loaded or can be loaded.
-     *
-     * @static
-     * @see LLMS()
-     * @return LifterLMS - Main instance
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
-
-    /**
      * Add Actions
      *
      * @since 0.0.1

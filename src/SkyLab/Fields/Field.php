@@ -166,7 +166,7 @@ abstract class Field
      * @since 0.0.1
      * @version 0.0.1
      *
-     * @param bool $restore_to_default
+     * @param bool $use_default
      * @return $this
      */
     public function save($use_default = false)
