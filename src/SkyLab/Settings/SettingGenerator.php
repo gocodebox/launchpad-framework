@@ -204,6 +204,13 @@ class SettingGenerator {
 
 	    $tabs = apply_filters( 'launchpad_settings_tabs_array', array() );
 
+        // if the current tab doesn't exist, return the first tab in the array
+        if ( ! isset( $tabs[$current_tab] ) ) {
+
+            $current_tab = array_keys( $tabs )[0];
+
+        }
+
 		include ($this->config->get_admin_views_directory() . 'view.settings.form.php');
 	}
 
