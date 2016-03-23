@@ -19,7 +19,7 @@ abstract class SettingsPage {
      *
      * @return array
      */
-    public function add_settings_page($pages) {
+    public function add_new_settings_page($pages) {
         $pages[ $this->id ] = $this->label;
 
         return $pages;

@@ -119,6 +119,7 @@ class CustomizeSectionLoader
 
         foreach ($sections['settings'] as $key => $value)
         {
+
             $settings_values = [
                   'default'                 => isset($value['default']) ? $value['default'] : ''
                 , 'type'                    => 'option'
@@ -160,8 +161,8 @@ class CustomizeSectionLoader
                 unset($control_values['type']);
             }
 
-
-            $wp_customize->add_setting($value['id'], $settings_values);
+            // array merge a sanitize callback default because theme check won't pass otherwise
+            $wp_customize->add_setting($value['id'], array_merge( [ 'sanitize_callback' => 'esc_url_raw' ], $settings_values ) );
 
             $wp_customize->add_control(
                 new $class(

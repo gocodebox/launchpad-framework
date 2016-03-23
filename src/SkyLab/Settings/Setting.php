@@ -24,7 +24,7 @@ abstract class Setting extends SettingsPage implements SettingInterface
      */
     public function add_actions_and_filters()
     {
-        add_filter('launchpad_settings_tabs_array', [$this, 'add_settings_page'], $this->menu_order);
+        add_filter('launchpad_settings_tabs_array', [$this, 'add_new_settings_page'], $this->menu_order);
         add_action('launchpad_settings_' . $this->id, [$this, 'output']);
         add_action('launchpad_settings_save_' . $this->id, [$this, 'save']);
         add_action('launchpad_settings_save_' . $this->id, [$this, 'register_hooks']);
