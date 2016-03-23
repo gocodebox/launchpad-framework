@@ -250,6 +250,8 @@ class Enqueue
 
             $this->enqueue_javascript_bundle();
 
+            $this->enqueue_javascript_comments();
+
             wp_localize_script($this->script_handle, 'launchpad_vars', $this->get_script_vars());
 
             $this->enqueue_stylesheet_dependencies();
@@ -345,6 +347,20 @@ class Enqueue
             filemtime(get_template_directory() . '/js/' . $this->ns . $this->get_script_name() . $this->get_suffix() . '.js'),
             true
         );
+    }
+
+    /**
+     * Enqueue Javascript Comments
+     *
+     * @since 0.0.1
+     * @version 0.0.1
+     *
+     * @return void
+     */
+    protected function enqueue_javascript_comments()
+    {
+        if ( is_singular() && comments_open() )
+            wp_enqueue_script( 'comment-reply' );
     }
 
     /**
