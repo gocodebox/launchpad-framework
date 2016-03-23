@@ -76,35 +76,15 @@ class SettingsMenu
      */
     public function display_settings_menu()
     {
-        add_menu_page(
+        add_theme_page(
             __('LaunchPad','launchpad'),
             __('LaunchPad','launchpad'),
             'edit_themes',
             self::$menu_slug,
-            [$this->settings,'output'],
-            get_stylesheet_directory_uri() . '/images/menu-icon.png',
-            30
+            [$this->settings,'output']
         );
     }
-    /**
-     * This function adds the settings page to the menu.
-     *
-     * @return void
-     * @since 0.0.1
-     * @version 0.0.1
-     */
-    public function Init()
-    {
-        add_menu_page(
-            __('LaunchPad','launchpad'),
-            __('LaunchPad','launchpad'),
-            'edit_themes',
-            self::$menu_slug,
-            array($this->settings,'output'),
-            'dashicons-admin-tools',
-            30
-        );
-    }
+
 
     /**
      * This function registers the settings sections that
