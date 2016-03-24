@@ -71,21 +71,15 @@ class FontOptions
     {
         $google_faces = [];
 
-        $dir = realpath(dirname(__FILE__)) . '/webfonts.json';
-        $string = file_get_contents($dir);
+        include realpath(dirname(__FILE__)) . '/webfonts.php';
 
-        if ($string)
+        if ($webfonts)
         {
-            $json_a = json_decode($string, true);
-
-            if ($json_a)
+            foreach ($webfonts['items'] as $font)
             {
-                foreach ($json_a['items'] as $font)
-                {
-                    $google_faces['google_' . $font['family'] . ', ' . $font['category']] = $font['family'];
-                }
-
+                $google_faces['google_' . $font['family'] . ', ' . $font['category']] = $font['family'];
             }
+
         }
 
         return $google_faces;
