@@ -107,14 +107,14 @@ class SettingGenerator {
 		global $current_tab;
 
 		if (empty($_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'launchpad-settings') ) {
-			die(__( 'Whoa! something went wrong there!. Please refresh the page and retry.', 'launchpad'));
+			die(__( 'Whoa! something went wrong there!. Please refresh the page and retry.', 'lifterlms-launchpad'));
 		}
 
 	   	do_action('launchpad_settings_save_' . $current_tab);
 	    do_action('launchpad_update_options_' . $current_tab);
 	    do_action('launchpad_update_options');
 
-		self::set_message(__('Your settings have been saved.', 'launchpad'));
+		self::set_message(__('Your settings have been saved.', 'lifterlms-launchpad'));
 
 		do_action('launchpad_settings_saved');
 	}

@@ -98,7 +98,7 @@ class Application
     public function theme_setup()
     {
         // Language loading
-        load_theme_textdomain('launchpad', trailingslashit(get_template_directory()) . 'languages');
+        load_theme_textdomain('lifterlms-launchpad', trailingslashit(get_template_directory()) . 'languages');
         // HTML5 support
         add_theme_support( 'html5', array( 'search-form', 'gallery' ) );
         // Automatic feed links
