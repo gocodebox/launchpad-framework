@@ -63,7 +63,7 @@ class MenuGenerator
 
         foreach($menus as $menu)
         {
-            register_nav_menu($menu->location, __($menu->description, 'lifterlms-launchpad'));
+            register_nav_menu( $menu->location, $menu->description );
         }
     }
 
