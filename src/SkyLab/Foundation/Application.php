@@ -136,7 +136,6 @@ class Application
     {
         new SidebarGenerator(self::$config);
         new MenuGenerator(self::$config);
-        new ShortcodeGenerator(self::$config);
         new ActionClassLoader(self::$config);
     }
 
