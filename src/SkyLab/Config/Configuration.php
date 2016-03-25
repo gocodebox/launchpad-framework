@@ -132,16 +132,6 @@ abstract class Configuration
     protected $menus_namespace = 'LaunchPad\Menus\\';
 
     /**
-     * Shortcodes Namespace
-     *
-     * @since 0.0.1
-     * @version 0.0.1
-     *
-     * @var string
-     */
-    protected $shortcodes_namespace = 'LaunchPad\Shortcodes\\';
-
-    /**
      * Metabox Namespace
      *
      * @since 0.0.1
@@ -210,16 +200,6 @@ abstract class Configuration
      * @var string
      */
     protected $menus_directory = '/app/Menus/';
-
-    /**
-     * Shortcodes Directory
-     *
-     * @since 0.0.1
-     * @version 0.0.1
-     *
-     * @var string
-     */
-    protected $shortcodes_directory = '/app/Shortcodes/';
 
     /**
      * Actions Directory
@@ -340,16 +320,6 @@ abstract class Configuration
     }
 
     /**
-     * Get Shortcodes Namespace
-     *
-     * @return string
-     */
-    public function get_shortcodes_namespace()
-    {
-        return $this->shortcodes_namespace;
-    }
-
-    /**
      * Get Actions Namespace
      *
      * @return string
@@ -407,16 +377,6 @@ abstract class Configuration
     public function get_menus_directory()
     {
         return $this->menus_directory;
-    }
-
-    /**
-     * Get Shortcodes Directory
-     *
-     * @return string
-     */
-    public function get_shortcodes_directory()
-    {
-        return $this->shortcodes_directory;
     }
 
     /**
