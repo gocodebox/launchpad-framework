@@ -41,8 +41,11 @@ class FieldGenerator
         foreach ($this->fields as $value) {
 
             $type_class = Application::$config->get_fields_namespace() . ucfirst($value['type']);
-            $field = new $type_class($value);
-            echo $field->output();
+            if ( class_exists( $type_class ) ) {
+                $field = new $type_class($value);
+                echo $field->output();
+            }
+            do_action( 'launchpad_output_field_' . $value['type'], $value );
 
         }
     }
