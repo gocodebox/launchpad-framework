@@ -77,12 +77,16 @@ class FieldGenerator
             // Get the option name
             $option_value = null;
 
+
             // we do nothing for button
             $type_class = Application::$config->get_fields_namespace() . ucfirst($type);
-            $field = new $type_class($value);
-            //$field = new Text($value);
-            $field->save($use_default);
+            if ( class_exists( $type_class ) ) {
+                $field = new $type_class($value);
+                //$field = new Text($value);
+                $field->save($use_default);
+            }
 
+            do_action( 'launchpad_save_field_' . $value['type'], $value );
 
         }
     }
