@@ -37,7 +37,7 @@ class ActionClassLoader
      */
     public function __construct(Configuration $config)
     {
-        add_action('init', [$this, 'load_action_classes']);
+        add_action( 'init', [ $this, 'load_action_classes' ], 1);
 
         $this->config = $config;
     }
