@@ -189,7 +189,7 @@ class SettingGenerator {
 
 		self::get_settings_tabs();
 
-		$current_tab = empty( $_GET['tab'] ) ? 'general' : sanitize_title( $_GET['tab'] );
+		$current_tab = empty( $_GET['tab'] ) ? apply_filters( 'launchpad_settings_default_tab', 'general' ) : sanitize_title( $_GET['tab'] );
 
 	    if ( ! empty( $_POST ) )
 	    	self::save();
