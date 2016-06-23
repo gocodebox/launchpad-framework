@@ -65,7 +65,9 @@ abstract class AjaxRequest
 
         $request = $this->scrub_request($_REQUEST);
 
-        $response = $this->$request['action']($request);
+        $action = $request['action'];
+
+        $response = $this->$action($request);
 
         if ($response instanceof WP_Error) {
             $this->send_error($response);
