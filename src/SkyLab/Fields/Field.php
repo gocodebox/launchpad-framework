@@ -308,8 +308,23 @@ abstract class Field
             {
                 $_POST[$this->value['id']] = sanitize_text_field($_POST[$this->value['id']]);
             }
+			// Set numeric values to default if null
+			if( strcmp( $this->value['type'], 'number') == 0 ){
 
-            $this->option_value = stripslashes($_POST[$this->value['id']]);
+				if( $_POST[$this->value['id']] == '' ){
+
+					$this->option_value = $this->value['default'];
+				}
+				else{
+					$this->option_value = stripslashes($_POST[$this->value['id']]);
+				}
+
+			}
+			else{
+				$this->option_value = stripslashes($_POST[$this->value['id']]);
+			}
+
+
         }
         else
         {
