@@ -79,7 +79,7 @@ class SettingsMenu
         add_theme_page(
             __('LaunchPad','launchpad'),
             __('LaunchPad','launchpad'),
-            'edit_themes',
+            'edit_theme_options',
             self::$menu_slug,
             [$this->settings,'output']
         );
